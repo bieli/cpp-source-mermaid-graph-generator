@@ -4,7 +4,8 @@
 ![github_tag](https://img.shields.io/github/v/tag/bieli/cpp-source-mermaid-graph-generator)
 
 
-CPP program flow graph generator from source file (in mermaid format)
+C and CPP program flow graph generator from source file (in mermaid format) for happy debugging and discovery legacy power!
+
 
 ## Motivation
 Mostly for faster reading and understanding legacy ANSI C code mixed with C++ code blocks.
