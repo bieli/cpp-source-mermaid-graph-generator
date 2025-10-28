@@ -23,22 +23,36 @@ Two arguments:
 - `[skip_list]` (optional) skip commands lists to not include to results (default: "cout,cin") 
 
 ### Run example
+Imagine we have this legacy C/C++ code block:
 
+```cpp
+main() {
+    int a = doFunc1();
+    if (a == 0) {
+        exit(101);
+    }
+    int ab = doFunc12();
+    int b = doFunc2();
+    if (b == 0) {
+        return -1;
+    }
+}
+```
+Let's run this tool and see graphs with general representation of program flows:
 ```bash
 cargo run -- cpp_examples/1.cpp 
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.02s
-     Running `target/debug/cpp_source_mermaid_graph_generator cpp_examples/1.cpp`
+
 flowchart TD
     START(cpp_examples/1.cpp)
     START --> F001
     F001(CALL doFunc1)
-    F001 --> B002{a == 0}
+    F001 --> B002{a eq 0}
     B002 -->|true| EXIT101[EXIT 101]
     B002 -->|false| F003
     F003(CALL doFunc12)
     F003 --> F004
     F004(CALL doFunc2)
-    F004 --> B005{b == 0}
+    F004 --> B005{b eq 0}
     B005 -->|true| RETN1[RETURN -1]
 ```
 
@@ -50,13 +64,13 @@ flowchart TD
     START(cpp_examples/1.cpp)
     START --> F001
     F001(CALL doFunc1)
-    F001 --> B002{a == 0}
+    F001 --> B002{a eq 0}
     B002 -->|true| EXIT101[EXIT 101]
     B002 -->|false| F003
     F003(CALL doFunc12)
     F003 --> F004
     F004(CALL doFunc2)
-    F004 --> B005{b == 0}
+    F004 --> B005{b eq 0}
     B005 -->|true| RETN1[RETURN -1]
 ```
 
