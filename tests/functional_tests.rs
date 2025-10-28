@@ -87,4 +87,3 @@ fn normalize(s: &str) -> String {
         .collect::<Vec<_>>()
         .join("\n")
 }
-

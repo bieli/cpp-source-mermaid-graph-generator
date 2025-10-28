@@ -37,7 +37,10 @@ pub fn generate_mermaid_graph(input: &str, file_path: &str, skip_list: &[String]
                 let branch_node = format!("B{:03}", node_id);
                 node_id += 1;
 
-                output.push_str(&format!("    {} --> {}{{{}}}\n", last_node, branch_node, condition));
+                output.push_str(&format!(
+                    "    {} --> {}{{{}}}\n",
+                    last_node, branch_node, condition
+                ));
 
                 if let Some(next_line) = lines.front() {
                     let next_line = next_line.trim();
@@ -92,7 +95,10 @@ pub fn generate_mermaid_graph(input: &str, file_path: &str, skip_list: &[String]
 pub fn extract_function_call(line: &str) -> Option<String> {
     let trimmed = line.trim();
     if trimmed.ends_with(';') && trimmed.contains('(') && trimmed.contains(')') {
-        if trimmed.starts_with("if") || trimmed.starts_with("switch") || trimmed.starts_with("while") {
+        if trimmed.starts_with("if")
+            || trimmed.starts_with("switch")
+            || trimmed.starts_with("while")
+        {
             return None;
         }
         let before_paren = trimmed.split('(').next()?.trim();
@@ -116,11 +122,19 @@ pub fn extract_condition(line: &str) -> String {
 }
 
 pub fn extract_exit_code(line: &str) -> Option<String> {
-    line.split("exit(").nth(1)?.split(')').next().map(|s| s.trim().to_string())
+    line.split("exit(")
+        .nth(1)?
+        .split(')')
+        .next()
+        .map(|s| s.trim().to_string())
 }
 
 pub fn extract_return_code(line: &str) -> Option<String> {
-    line.split("return").nth(1)?.split(';').next().map(|s| s.trim().to_string())
+    line.split("return")
+        .nth(1)?
+        .split(';')
+        .next()
+        .map(|s| s.trim().to_string())
 }
 
 pub fn sanitize(label: &str) -> String {
@@ -137,4 +151,3 @@ pub fn sanitize(label: &str) -> String {
         .replace("(", " ")
         .replace(")", " ")
 }
-

@@ -2,12 +2,18 @@ use cpp_source_mermaid_graph_generator::parser::*;
 
 #[test]
 fn test_extract_function_call_simple() {
-    assert_eq!(extract_function_call("doFunc1();"), Some("doFunc1".to_string()));
+    assert_eq!(
+        extract_function_call("doFunc1();"),
+        Some("doFunc1".to_string())
+    );
 }
 
 #[test]
 fn test_extract_function_call_with_assignment() {
-    assert_eq!(extract_function_call("int a = doFunc1();"), Some("doFunc1".to_string()));
+    assert_eq!(
+        extract_function_call("int a = doFunc1();"),
+        Some("doFunc1".to_string())
+    );
 }
 
 #[test]
@@ -31,4 +37,3 @@ fn test_sanitize_special_chars() {
     let expected = "x k    2   5";
     assert_eq!(sanitize(input), expected);
 }
-

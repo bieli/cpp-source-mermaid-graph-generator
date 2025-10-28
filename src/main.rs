@@ -26,4 +26,3 @@ fn main() {
     let mermaid_graph = parser::generate_mermaid_graph(&input, file_path, &skip_list);
     println!("{}", mermaid_graph);
 }
-
