@@ -34,6 +34,6 @@ fn test_extract_return_code() {
 #[test]
 fn test_sanitize_special_chars() {
     let input = "x[k] % 2 < 5";
-    let expected = "x k    2   5";
+    let expected = "x k  % 2 lt 5";
     assert_eq!(sanitize(input), expected);
 }

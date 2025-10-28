@@ -139,11 +139,15 @@ pub fn extract_return_code(line: &str) -> Option<String> {
 
 pub fn sanitize(label: &str) -> String {
     label
+        .replace(">=", "ge")
+        .replace("<=", "le")
+        .replace("==", "eq")
+        .replace("!=", "ne")
+        .replace(">", "gt")
+        .replace("<", "lt")
         .replace("[", " ")
         .replace("]", " ")
-        .replace("%", " ")
-        .replace("<", " ")
-        .replace(">", " ")
+        .replace("%", "%")
         .replace("\"", " ")
         .replace("|", " ")
         .replace("{", " ")

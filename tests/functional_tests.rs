@@ -18,7 +18,7 @@ fn test_main_with_nested_braces_and_spacing() {
         START(test.cpp)
         START --> F001
         F001(CALL doFunc1)
-        F001 --> B002{a == 0}
+        F001 --> B002{a eq 0}
         B002 -->|false| F003
         F003(CALL exit)
         F003 --> F004
@@ -46,9 +46,9 @@ fn test_main_with_multiple_returns() {
     let expected = r#"
         flowchart TD
         START(test.cpp)
-        START --> B001{x   0}
+        START --> B001{x lt 0}
         B001 -->|true| RETN1[RETURN -1]
-        B001 --> B002{x == 0}
+        B001 --> B002{x eq 0}
         B002 -->|true| RET0[RETURN 0]
         B002 -->|false| F003
         F003(CALL doSomething)
@@ -72,7 +72,7 @@ fn test_main_with_no_function_calls() {
     let expected = r#"
         flowchart TD
         START(test.cpp)
-        START --> B001{x   0}
+        START --> B001{x gt 0}
         B001 -->|true| RET1[RETURN 1]
     "#;
 
